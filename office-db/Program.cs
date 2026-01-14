@@ -40,4 +40,11 @@ app.MapPost("/employees", async (OfficeDb db, Employee employee) =>
     return Results.Created($"/employees/{employee.Id}", employee);
 });
 
+app.MapGet("/employees", async (OfficeDb db) =>
+{
+    var employees = await db.Employees.ToListAsync();
+    return Results.Ok(employees);
+});
+
+
 app.Run();
